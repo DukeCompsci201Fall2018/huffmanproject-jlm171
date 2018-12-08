@@ -177,12 +177,12 @@ public class HuffProcessor {
 		HuffNode current = root;
 		while (true) {
 			int bits = in.readBits(1);
-			if (bits == -1) throw new HuffException("bad input, no PSEUDO_EOF");
+			if (bits == -1) {
+				throw new HuffException("bad input, no PSEUDO_EOF");
+			}
 			
 			else {
-				if (bits == 0) {
-					if (current.myLeft != null) current = current.myLeft;
-				}
+				if (bits == 0) current = current.myLeft;
 				else current = current.myRight;
 				
 				if (current.myLeft == null && current.myRight == null) {
